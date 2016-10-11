@@ -1,0 +1,5 @@
+server:
+  port: 8981
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/json,text/javascript,text/plain,image/gif,image/jpg,image/png
