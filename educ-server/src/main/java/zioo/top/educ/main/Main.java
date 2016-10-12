@@ -10,7 +10,17 @@ public class Main {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config/educ-server.xml");
 		System.out.println("content start:" + context.getBeanDefinitionCount());
-		System.in.read();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(true) {
+					try {
+						Thread.sleep(Long.MAX_VALUE);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}).start();
 	}
-	
 }

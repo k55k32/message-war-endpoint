@@ -42,6 +42,11 @@
   		<version>${project.parent.version}</version>
   	</dependency>
   	<dependency>
+  		<groupId>zioo.top</groupId> 
+  		<artifactId>educ-commons</artifactId>
+  		<version>${project.parent.version}</version>
+  	</dependency>
+  	<dependency>
 	    <groupId>org.springframework.boot</groupId> 
 	    <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
