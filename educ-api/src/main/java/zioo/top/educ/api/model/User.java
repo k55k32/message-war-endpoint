@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -27,10 +29,13 @@ public class User implements Serializable{
 	@GenericGenerator(strategy="uuid", name="system-uuid")
 	@GeneratedValue(generator="system-uuid")
 	private String id;
+	@NotBlank(message="username is required")
 	@Column(nullable = false, unique = true)
 	private String username;
+	@NotBlank(message="password is required")
 	@Column(nullable = false)
 	private String password;
+	@Email(message="must be email")
 	@Column(nullable = false, unique = true)
 	private String email;
 	private String nickname;

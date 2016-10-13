@@ -205,7 +205,6 @@ public class AnnotationBean extends AbstractConfig implements DisposableBean, Be
             		serviceConfig.setId(targetInterface);
             		serviceConfig.setInterface(targetInterface);
             	}
-            	serviceConfig.getId();
             }
             
             serviceConfig.setRef(bean);

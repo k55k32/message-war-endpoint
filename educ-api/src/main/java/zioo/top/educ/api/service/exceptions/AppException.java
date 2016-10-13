@@ -1,6 +1,8 @@
-package zioo.educ.commons.exceptions;
+package zioo.top.educ.api.service.exceptions;
 
-public class AppException extends RuntimeException{
+import java.io.Serializable;
+
+public class AppException extends Exception implements Serializable{
 	
 	/**
 	 * 
@@ -10,29 +12,34 @@ public class AppException extends RuntimeException{
 	public static final Error UNKNOW_EXCEPTION = e(10000, "unknow exception");
 
 	public static final Error AUTH_FAILED = e(20000, "username or password error");
+
+	public static final Error PARAMS_ERROR = e(30000, "params error: %s");
 	
-	private Error error;
+	private int code;
+	private String msg;
 	
 	@SuppressWarnings("unused")
 	private AppException() {
 	}
 
 	public AppException(Error code) {
-		this.error = code == null ? UNKNOW_EXCEPTION : code; 
+		code = code == null ? UNKNOW_EXCEPTION : code;
+		this.code = code.getCode();
+		this.msg = code.getMsg();
 	}
 	
 	public AppException(Error code, String exMsg) {
 		this(code);
-		this.error.setMsg(String.format(code.getMsg(), exMsg));
+		this.msg = String.format(code.getMsg(), exMsg);
 	}
 	
 	@Override
 	public String getMessage() {
-		return error.getMsg();
+		return msg;
 	}
 	
 	public int getCode() {
-		return error.getCode();
+		return code;
 	}
 	
 	
@@ -40,15 +47,11 @@ public class AppException extends RuntimeException{
 		return new Error(code, msg);
 	}
 	
-	public Error getError() {
-		return error;
-	}
-
-	public void setError(Error error) {
-		this.error = error;
-	}
-	
-	static class Error {
+	static class Error implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 5994181263578404551L;
 			private int code;
 			private String msg;
 			public Error(int code2, String msg2) {
