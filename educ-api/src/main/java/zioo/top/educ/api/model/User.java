@@ -1,5 +1,6 @@
 package zioo.top.educ.api.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,10 +11,18 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 
 @Entity
 @Table(name="wm_user")
-public class User {
+@JsonInclude(Include.NON_EMPTY)
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6456755665113863578L;
 	@Id
 	@GenericGenerator(strategy="uuid", name="system-uuid")
 	@GeneratedValue(generator="system-uuid")

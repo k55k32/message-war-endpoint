@@ -1,11 +1,11 @@
 package zioo.top.deuc.web.api.controller;
 
-import org.educ.commons.utils.PwdUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 
+import zioo.educ.commons.utils.PwdUtils;
 import zioo.top.educ.api.model.User;
 import zioo.top.educ.api.service.UserService;
 

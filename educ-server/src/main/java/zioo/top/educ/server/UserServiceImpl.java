@@ -2,14 +2,17 @@ package zioo.top.educ.server;
 
 import java.util.Date;
 
-import org.educ.commons.exceptions.AppException;
 import org.hibernate.Query;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.alibaba.dubbo.config.annotation.Service;
 
+import zioo.educ.commons.exceptions.AppException;
 import zioo.top.educ.api.model.User;
 import zioo.top.educ.api.service.UserService;
 
 @Service
+@Transactional
 public class UserServiceImpl extends BaseService<User, String> implements UserService {
 
 	@Override

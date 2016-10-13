@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @ImportResource("classpath:spring-config/educ-web.xml")
-//@ComponentScan("zioo.top.educ.web.api.config")
+@ComponentScan(value = {"zioo.top.educ.web.api.config", "zioo.top.educ.web.api.interceptors"})
 public class AppStart {
 	public static void main(String[] args) {
 		SpringApplication.run(AppStart.class, args);

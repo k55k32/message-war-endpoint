@@ -1,4 +1,4 @@
-package org.educ.commons.exceptions;
+package zioo.educ.commons.exceptions;
 
 public class AppException extends RuntimeException{
 	
@@ -9,7 +9,7 @@ public class AppException extends RuntimeException{
 
 	public static final Error UNKNOW_EXCEPTION = e(10000, "unknow exception");
 
-	public static final Error AUTH_FAILED = e(20000, "username or passwor error");
+	public static final Error AUTH_FAILED = e(20000, "username or password error");
 	
 	private Error error;
 	
@@ -29,6 +29,10 @@ public class AppException extends RuntimeException{
 	@Override
 	public String getMessage() {
 		return error.getMsg();
+	}
+	
+	public int getCode() {
+		return error.getCode();
 	}
 	
 	
