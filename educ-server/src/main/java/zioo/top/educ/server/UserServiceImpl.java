@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.educ.commons.exceptions.AppException;
 import org.hibernate.Query;
-
 import com.alibaba.dubbo.config.annotation.Service;
 
 import zioo.top.educ.api.model.User;

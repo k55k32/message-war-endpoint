@@ -79,19 +79,20 @@
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
    
-   <tx:advice id="txAdvice" transaction-manager="txManager">
-      <tx:attributes>
-          <tx:method name="find*" read-only="true"/>
-          <tx:method name="exists*" read-only="true"/>
-          <tx:method name="get*" read-only="true"/>
-          <tx:method name="*"/>
-      </tx:attributes>
-   </tx:advice>
+   <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+   
+<!--    <tx:advice id="txAdvice" transaction-manager="txManager"> -->
+<!--       <tx:attributes> -->
+<!--           <tx:method name="find*" read-only="true"/> -->
+<!--           <tx:method name="exists*" read-only="true"/> -->
+<!--           <tx:method name="get*" read-only="true"/> -->
+<!--           <tx:method name="*"/> -->
+<!--       </tx:attributes> -->
+<!--    </tx:advice> -->
     
-   <aop:config>
-	  <aop:pointcut id="serviceMethods"	expression="execution(* zioo.top.educ.server..*(..))" />
-	  <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
-   </aop:config> 
-
-	
+<!--    <aop:config> -->
+<!-- 	  <aop:pointcut id="serviceMethods"	expression="execution(* zioo.top.educ.server..*(..))" /> -->
+<!-- 	  <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" /> -->
+<!--    </aop:config>  -->
+   
 </beans>

@@ -1,7 +1,5 @@
 package org.educ.commons.exceptions;
 
-import org.educ.commons.exceptions.AppException.Error;
-
 public class AppException extends RuntimeException{
 	
 	/**

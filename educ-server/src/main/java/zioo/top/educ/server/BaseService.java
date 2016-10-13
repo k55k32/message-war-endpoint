@@ -2,6 +2,7 @@ package zioo.top.educ.server;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -23,8 +24,12 @@ public abstract class BaseService<Model,Primary extends Serializable> {
 	Class<?> entityClass;
 	
 	public BaseService() {
-		ParameterizedType parameterizedType = (ParameterizedType)this.getClass().getGenericSuperclass(); 
-		entityClass= (Class<?>)(parameterizedType.getActualTypeArguments()[0]); 
+		Type type = getClass().getGenericSuperclass();
+		if(!(type instanceof ParameterizedType)){
+		    type = getClass().getSuperclass().getGenericSuperclass();
+		}
+		entityClass = (Class<?>)((ParameterizedType)type).getActualTypeArguments()[0];
+//		entityClass= (Class<?>)(parameterizedType.getActualTypeArguments()[0]); 
 	}
 	
 	public Session getSession() {

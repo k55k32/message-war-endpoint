@@ -21,6 +21,7 @@ import zioo.top.educ.api.service.UserService;
 @Transactional
 @ContextConfiguration("classpath:spring-config/educ-server.xml")
 public class AppTest extends TestCase {
+	
 	@Resource
 	UserService userService;
 
@@ -38,6 +39,7 @@ public class AppTest extends TestCase {
 	public void registerTest() {
 		User user = createUser();
 		userService.register(user);
+		System.out.println(user.getId());
 		assertNotNull(user.getId());
 	}
 	

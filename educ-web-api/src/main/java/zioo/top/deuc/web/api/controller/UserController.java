@@ -14,12 +14,12 @@ import zioo.top.educ.api.service.UserService;
 public class UserController {
 	
 	@Reference
-	UserService UserService;
+	UserService userService;
 	
 	@RequestMapping("login")
 	public User login (User user) {
 		user.setPassword(PwdUtils.pwd(user.getPassword()));
-		user = UserService.login(user);
+		user = userService.login(user);
 		return user;
 	}
 	
