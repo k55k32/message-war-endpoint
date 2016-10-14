@@ -5,9 +5,9 @@ import javax.validation.ConstraintViolationException;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.alibaba.dubbo.rpc.RpcException;
 
@@ -15,13 +15,9 @@ import zioo.educ.commons.entity.Result;
 import zioo.top.educ.api.service.exceptions.AppException;
 
 @Component
-@ControllerAdvice
+@RestControllerAdvice
 public class ExceptionInterceptor{
 
-	public ExceptionInterceptor() {
-		System.out.println("exceptor inter init");
-	}
-	
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	public Result resolveException(Exception ex) {
