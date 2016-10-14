@@ -2,6 +2,7 @@ package zioo.top.educ.server;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,8 @@ public class UserServiceImpl extends BaseService<User, String> implements UserSe
 
 	@Override
 	public User login(User user) throws AppException {
+		user.setUsername(StringUtils.trimToEmpty(user.getUsername()));
+		user.setPassword(StringUtils.trimToEmpty(user.getPassword()));
 		user.setPassword(PwdUtils.pwd(user.getPassword()));
 		user = (User) createQuery("from User where username = ? and password = ?")
 		.setParameter(0, user.getUsername())
@@ -30,6 +33,9 @@ public class UserServiceImpl extends BaseService<User, String> implements UserSe
 
 	@Override
 	public User register(User user) {
+		user.setUsername(StringUtils.trimToEmpty(user.getUsername()));
+		user.setPassword(StringUtils.trimToEmpty(user.getPassword()));
+		user.setEmail(StringUtils.trimToEmpty(user.getEmail()));
 		user.setPassword(PwdUtils.pwd(user.getPassword()));
 		user.setCreateTime(new Date());
 		user.setLastLoginTime(new Date());

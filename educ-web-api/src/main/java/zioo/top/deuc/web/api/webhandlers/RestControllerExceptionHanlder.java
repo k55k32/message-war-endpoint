@@ -1,12 +1,10 @@
-package zioo.top.deuc.web.api.interceptors;
+package zioo.top.deuc.web.api.webhandlers;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.alibaba.dubbo.rpc.RpcException;
@@ -14,12 +12,10 @@ import com.alibaba.dubbo.rpc.RpcException;
 import zioo.educ.commons.entity.Result;
 import zioo.top.educ.api.service.exceptions.AppException;
 
-@Component
 @RestControllerAdvice
-public class ExceptionInterceptor{
+public class RestControllerExceptionHanlder{
 
 	@ExceptionHandler(Exception.class)
-	@ResponseBody
 	public Result resolveException(Exception ex) {
 		Result result = new Result();
 		result.setSuccess(false);
