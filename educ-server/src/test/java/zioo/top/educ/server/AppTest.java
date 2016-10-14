@@ -1,7 +1,5 @@
 package zioo.top.educ.server;
 
-import javax.annotation.Resource;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -9,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.alibaba.dubbo.config.annotation.Reference;
 
 import junit.framework.TestCase;
 import zioo.top.educ.api.model.User;
@@ -22,7 +22,7 @@ import zioo.top.educ.api.service.UserService;
 @ContextConfiguration("classpath:spring-config/educ-server.xml")
 public class AppTest extends TestCase {
 	
-	@Resource
+	@Reference
 	UserService userService;
 
 	Logger log = LoggerFactory.getLogger(AppTest.class);
@@ -30,7 +30,7 @@ public class AppTest extends TestCase {
 	private User createUser() {
 		User user = new User();
 		user.setUsername("username");
-		user.setEmail("email");
+		user.setEmail("email@qq.com");
 		user.setPassword("testpwd");
 		return user;
 	}
@@ -47,7 +47,7 @@ public class AppTest extends TestCase {
 	public void existsTest() {
 		User user = createUser();
 		String name = "hello" + System.currentTimeMillis();
-		String email = "email" + System.currentTimeMillis();
+		String email = "email" + System.currentTimeMillis() + "@qq.com";
 		user.setUsername(name);
 		user.setEmail(email);
 		userService.register(user);

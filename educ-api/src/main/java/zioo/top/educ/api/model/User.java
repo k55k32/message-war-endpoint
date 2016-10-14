@@ -13,8 +13,11 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import zioo.top.educ.api.service.UserService;
 
 
 @Entity
@@ -34,7 +37,9 @@ public class User implements Serializable{
 	private String username;
 	@NotBlank(message="password is required")
 	@Column(nullable = false)
+	@JsonIgnore
 	private String password;
+	@NotBlank(groups = UserService.Register.class)
 	@Email(message="must be email")
 	@Column(nullable = false, unique = true)
 	private String email;

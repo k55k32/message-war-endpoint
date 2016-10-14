@@ -7,16 +7,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.dubbo.config.annotation.Service;
 
+import zioo.educ.commons.utils.PwdUtils;
 import zioo.top.educ.api.model.User;
 import zioo.top.educ.api.service.UserService;
 import zioo.top.educ.api.service.exceptions.AppException;
 
-@Service
+@Service(validation="true")
 @Transactional
 public class UserServiceImpl extends BaseService<User, String> implements UserService {
 
 	@Override
 	public User login(User user) throws AppException {
+		user.setPassword(PwdUtils.pwd(user.getPassword()));
 		user = (User) createQuery("from User where username = ? and password = ?")
 		.setParameter(0, user.getUsername())
 		.setParameter(1, user.getPassword()).uniqueResult();
@@ -28,6 +30,7 @@ public class UserServiceImpl extends BaseService<User, String> implements UserSe
 
 	@Override
 	public User register(User user) {
+		user.setPassword(PwdUtils.pwd(user.getPassword()));
 		user.setCreateTime(new Date());
 		user.setLastLoginTime(new Date());
 		user.setEmailIsVaild(false);
